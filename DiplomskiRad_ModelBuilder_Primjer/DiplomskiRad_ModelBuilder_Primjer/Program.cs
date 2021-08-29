@@ -19,8 +19,9 @@ namespace DiplomskiRad_ModelBuilder_Primjer
             //Učitavanje modela i predviđanje statusa osobe
             var result = TitanicModel.Predict(sampleData);
 
-            string status = result.Prediction == 1 ? "živ" : "mrtav";
-            Console.WriteLine($"Model predviđa da je status {(sampleData.Sex.Equals("male") ? "muške" : "ženske")} osobe nakon nesreće na Titanicu: {status}");
+            string status = result.Prediction == 1 ? "živ" : "preminuo";
+            Console.WriteLine($"Model predviđa da je status " +
+                $"{(sampleData.Sex.Equals("male") ? "muške" : "ženske")} osobe nakon nesreće na Titanicu: {status}");
 
             Console.ReadKey();
         }
