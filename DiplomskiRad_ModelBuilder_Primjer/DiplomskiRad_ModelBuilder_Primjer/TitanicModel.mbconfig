@@ -1,0 +1,132 @@
+﻿{
+  "TrainingConfigurationVersion": 0,
+  "TrainingTime": 60,
+  "Scenario": {
+    "ScenarioType": "Classification"
+  },
+  "DataSource": {
+    "DataSourceType": "TabularFile",
+    "FilePath": "C:\\Diplomski rad\\DiplomskiRad_ModelBuilder_Primjer\\DiplomskiRad_ModelBuilder_Primjer\\DiplomskiRad_ModelBuilder_Primjer\\Podaci\\titanic.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "PassengerId",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "Survived",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true
+      },
+      {
+        "ColumnName": "Pclass",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true
+      },
+      {
+        "ColumnName": "Name",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "Sex",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true
+      },
+      {
+        "ColumnName": "Age",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "SibSp",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true
+      },
+      {
+        "ColumnName": "Parch",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true
+      },
+      {
+        "ColumnName": "Ticket",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "Fare",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "Cabin",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "Embarked",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true
+      }
+    ]
+  },
+  "Environment": {
+    "EnvironmentType": "LocalCPU"
+  },
+  "RunHistory": {
+    "Trials": [
+      {
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 0.837344805872549,
+        "RuntimeInSeconds": 8.11400032043457
+      },
+      {
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.83248516058230337,
+        "RuntimeInSeconds": 8.1070003509521484
+      },
+      {
+        "TrainerName": "FastForestOva",
+        "Score": 0.82878984385196675,
+        "RuntimeInSeconds": 9.4049997329711914
+      },
+      {
+        "TrainerName": "FastTreeOva",
+        "Score": 0.81502069987729675,
+        "RuntimeInSeconds": 10.465000152587891
+      },
+      {
+        "TrainerName": "SdcaLogisticRegressionOva",
+        "Score": 0.60011558624558659,
+        "RuntimeInSeconds": 7.4889998435974121
+      },
+      {
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.60011558624558659,
+        "RuntimeInSeconds": 5.0900001525878906
+      },
+      {
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.60011558624558659,
+        "RuntimeInSeconds": 6.9419999122619629
+      }
+    ],
+    "Pipeline": "[{\"EstimatorType\":\"OneHotEncoding\",\"Inputs\":[\"Sex\",\"Embarked\"],\"Outputs\":[\"Sex\",\"Embarked\"]},{\"EstimatorType\":\"ReplaceMissingValues\",\"Inputs\":[\"PassengerId\",\"Pclass\",\"Age\",\"SibSp\",\"Parch\",\"Fare\"],\"Outputs\":[\"PassengerId\",\"Pclass\",\"Age\",\"SibSp\",\"Parch\",\"Fare\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Name\"],\"Outputs\":[\"Name\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Ticket\"],\"Outputs\":[\"Ticket\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Cabin\"],\"Outputs\":[\"Cabin\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"Sex\",\"Embarked\",\"PassengerId\",\"Pclass\",\"Age\",\"SibSp\",\"Parch\",\"Fare\",\"Name\",\"Ticket\",\"Cabin\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapValueToKey\",\"Inputs\":[\"Survived\"],\"Outputs\":[\"Survived\"]},{\"EstimatorType\":\"NormalizeMinMax\",\"Inputs\":[\"Features\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"Survived\",\"FeatureColumnName\":\"Features\",\"L1Regularization\":\"0.170859100144544\",\"L2Regularization\":\"0.427633330029212\",\"EstimatorType\":\"LbfgsLogisticRegressionOva\",\"Inputs\":[\"Survived\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapKeyToValue\",\"Inputs\":[\"PredictedLabel\"],\"Outputs\":[\"PredictedLabel\"]}]",
+    "MetricName": "MicroAccuracy"
+  }
+}

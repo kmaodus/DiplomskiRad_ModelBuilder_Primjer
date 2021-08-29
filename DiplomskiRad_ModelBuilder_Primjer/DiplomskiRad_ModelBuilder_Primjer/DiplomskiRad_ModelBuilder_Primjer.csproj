@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Podaci\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="1.5.5" />
+  </ItemGroup>
+  <ItemGroup Label="TitanicModel">
+    <None Include="TitanicModel.consumption.cs">
+      <DependentUpon>TitanicModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="TitanicModel.training.cs">
+      <DependentUpon>TitanicModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="TitanicModel.zip">
+      <DependentUpon>TitanicModel.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
