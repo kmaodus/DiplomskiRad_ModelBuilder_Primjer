@@ -13,7 +13,7 @@
     "ColumnProperties": [
       {
         "ColumnName": "PassengerId",
-        "ColumnPurpose": "Feature",
+        "ColumnPurpose": "Ignore",
         "ColumnDataFormat": "Single",
         "IsCategorical": false
       },
@@ -61,25 +61,25 @@
       },
       {
         "ColumnName": "Ticket",
-        "ColumnPurpose": "Feature",
+        "ColumnPurpose": "Ignore",
         "ColumnDataFormat": "String",
         "IsCategorical": false
       },
       {
         "ColumnName": "Fare",
-        "ColumnPurpose": "Feature",
+        "ColumnPurpose": "Ignore",
         "ColumnDataFormat": "Single",
         "IsCategorical": false
       },
       {
         "ColumnName": "Cabin",
-        "ColumnPurpose": "Feature",
+        "ColumnPurpose": "Ignore",
         "ColumnDataFormat": "String",
         "IsCategorical": false
       },
       {
         "ColumnName": "Embarked",
-        "ColumnPurpose": "Feature",
+        "ColumnPurpose": "Ignore",
         "ColumnDataFormat": "String",
         "IsCategorical": true
       }
@@ -91,42 +91,97 @@
   "RunHistory": {
     "Trials": [
       {
-        "TrainerName": "LbfgsLogisticRegressionOva",
-        "Score": 0.837344805872549,
-        "RuntimeInSeconds": 8.11400032043457
-      },
-      {
-        "TrainerName": "LbfgsMaximumEntropyMulti",
-        "Score": 0.83248516058230337,
-        "RuntimeInSeconds": 8.1070003509521484
+        "TrainerName": "FastTreeOva",
+        "Score": 0.82351419195443132,
+        "RuntimeInSeconds": 3.9210000038146973
       },
       {
         "TrainerName": "FastForestOva",
-        "Score": 0.82878984385196675,
-        "RuntimeInSeconds": 9.4049997329711914
+        "Score": 0.8224377587196452,
+        "RuntimeInSeconds": 4.3819999694824219
+      },
+      {
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 0.82171646554979194,
+        "RuntimeInSeconds": 2.5920000076293945
       },
       {
         "TrainerName": "FastTreeOva",
-        "Score": 0.81502069987729675,
-        "RuntimeInSeconds": 10.465000152587891
+        "Score": 0.8200110852638558,
+        "RuntimeInSeconds": 3.8180000782012939
+      },
+      {
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.818501244529877,
+        "RuntimeInSeconds": 2.2869999408721924
+      },
+      {
+        "TrainerName": "FastForestOva",
+        "Score": 0.81735496307299726,
+        "RuntimeInSeconds": 4.1770000457763672
+      },
+      {
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.81524448502589686,
+        "RuntimeInSeconds": 2.9419999122619629
+      },
+      {
+        "TrainerName": "FastForestOva",
+        "Score": 0.813972550494312,
+        "RuntimeInSeconds": 4.3480000495910645
+      },
+      {
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.8048702056816307,
+        "RuntimeInSeconds": 2.8239998817443848
+      },
+      {
+        "TrainerName": "FastTreeOva",
+        "Score": 0.8023764224676958,
+        "RuntimeInSeconds": 3.7539999485015869
+      },
+      {
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.78951080414934616,
+        "RuntimeInSeconds": 1.7510000467300415
       },
       {
         "TrainerName": "SdcaLogisticRegressionOva",
-        "Score": 0.60011558624558659,
-        "RuntimeInSeconds": 7.4889998435974121
+        "Score": 0.786149995000806,
+        "RuntimeInSeconds": 2.8220000267028809
+      },
+      {
+        "TrainerName": "SdcaLogisticRegressionOva",
+        "Score": 0.786149995000806,
+        "RuntimeInSeconds": 2.7720000743865967
+      },
+      {
+        "TrainerName": "FastTreeOva",
+        "Score": 0.7828636986349562,
+        "RuntimeInSeconds": 3.9909999370574951
+      },
+      {
+        "TrainerName": "SdcaLogisticRegressionOva",
+        "Score": 0.64411982626721809,
+        "RuntimeInSeconds": 2.73799991607666
       },
       {
         "TrainerName": "SdcaMaximumEntropyMulti",
-        "Score": 0.60011558624558659,
-        "RuntimeInSeconds": 5.0900001525878906
+        "Score": 0.63164597064052708,
+        "RuntimeInSeconds": 2.6480000019073486
+      },
+      {
+        "TrainerName": "LightGbmMulti",
+        "Score": 0.61555401661753861,
+        "RuntimeInSeconds": 2.8429999351501465
       },
       {
         "TrainerName": "SdcaMaximumEntropyMulti",
-        "Score": 0.60011558624558659,
-        "RuntimeInSeconds": 6.9419999122619629
+        "Score": 0.59371493615776838,
+        "RuntimeInSeconds": 1.7369999885559082
       }
     ],
-    "Pipeline": "[{\"EstimatorType\":\"OneHotEncoding\",\"Inputs\":[\"Sex\",\"Embarked\"],\"Outputs\":[\"Sex\",\"Embarked\"]},{\"EstimatorType\":\"ReplaceMissingValues\",\"Inputs\":[\"PassengerId\",\"Pclass\",\"Age\",\"SibSp\",\"Parch\",\"Fare\"],\"Outputs\":[\"PassengerId\",\"Pclass\",\"Age\",\"SibSp\",\"Parch\",\"Fare\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Name\"],\"Outputs\":[\"Name\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Ticket\"],\"Outputs\":[\"Ticket\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Cabin\"],\"Outputs\":[\"Cabin\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"Sex\",\"Embarked\",\"PassengerId\",\"Pclass\",\"Age\",\"SibSp\",\"Parch\",\"Fare\",\"Name\",\"Ticket\",\"Cabin\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapValueToKey\",\"Inputs\":[\"Survived\"],\"Outputs\":[\"Survived\"]},{\"EstimatorType\":\"NormalizeMinMax\",\"Inputs\":[\"Features\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"Survived\",\"FeatureColumnName\":\"Features\",\"L1Regularization\":\"0.170859100144544\",\"L2Regularization\":\"0.427633330029212\",\"EstimatorType\":\"LbfgsLogisticRegressionOva\",\"Inputs\":[\"Survived\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapKeyToValue\",\"Inputs\":[\"PredictedLabel\"],\"Outputs\":[\"PredictedLabel\"]}]",
+    "Pipeline": "[{\"EstimatorType\":\"OneHotEncoding\",\"Inputs\":[\"Sex\"],\"Outputs\":[\"Sex\"]},{\"EstimatorType\":\"ReplaceMissingValues\",\"Inputs\":[\"Pclass\",\"Age\",\"SibSp\",\"Parch\"],\"Outputs\":[\"Pclass\",\"Age\",\"SibSp\",\"Parch\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Name\"],\"Outputs\":[\"Name\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"Sex\",\"Pclass\",\"Age\",\"SibSp\",\"Parch\",\"Name\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapValueToKey\",\"Inputs\":[\"Survived\"],\"Outputs\":[\"Survived\"]},{\"LabelColumnName\":\"Survived\",\"FeatureColumnName\":\"Features\",\"NumberOfLeaves\":\"7\",\"MinimumExampleCountPerLeaf\":\"8\",\"NumberOfTrees\":\"4\",\"LearningRate\":\"1\",\"FeatureFraction\":\"1\",\"MaximumBinCountPerFeature\":\"80\",\"EstimatorType\":\"FastTreeOva\",\"Inputs\":[\"Survived\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapKeyToValue\",\"Inputs\":[\"PredictedLabel\"],\"Outputs\":[\"PredictedLabel\"]}]",
     "MetricName": "MicroAccuracy"
   }
 }

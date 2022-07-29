@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ML.Data;
+using Microsoft.ML.Trainers.FastTree;
 using Microsoft.ML.Trainers;
 using Microsoft.ML;
 
@@ -28,15 +29,12 @@ namespace DiplomskiRad_ModelBuilder_Primjer
         public static IEstimator<ITransformer> BuildPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations
-            var pipeline = mlContext.Transforms.Categorical.OneHotEncoding(new []{new InputOutputColumnPair(@"Sex", @"Sex"),new InputOutputColumnPair(@"Embarked", @"Embarked")})      
-                                    .Append(mlContext.Transforms.ReplaceMissingValues(new []{new InputOutputColumnPair(@"PassengerId", @"PassengerId"),new InputOutputColumnPair(@"Pclass", @"Pclass"),new InputOutputColumnPair(@"Age", @"Age"),new InputOutputColumnPair(@"SibSp", @"SibSp"),new InputOutputColumnPair(@"Parch", @"Parch"),new InputOutputColumnPair(@"Fare", @"Fare")}))      
+            var pipeline = mlContext.Transforms.Categorical.OneHotEncoding(@"Sex", @"Sex")      
+                                    .Append(mlContext.Transforms.ReplaceMissingValues(new []{new InputOutputColumnPair(@"Pclass", @"Pclass"),new InputOutputColumnPair(@"Age", @"Age"),new InputOutputColumnPair(@"SibSp", @"SibSp"),new InputOutputColumnPair(@"Parch", @"Parch")}))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"Name", @"Name"))      
-                                    .Append(mlContext.Transforms.Text.FeaturizeText(@"Ticket", @"Ticket"))      
-                                    .Append(mlContext.Transforms.Text.FeaturizeText(@"Cabin", @"Cabin"))      
-                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Sex",@"Embarked",@"PassengerId",@"Pclass",@"Age",@"SibSp",@"Parch",@"Fare",@"Name",@"Ticket",@"Cabin"}))      
+                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Sex",@"Pclass",@"Age",@"SibSp",@"Parch",@"Name"}))      
                                     .Append(mlContext.Transforms.Conversion.MapValueToKey(@"Survived", @"Survived"))      
-                                    .Append(mlContext.Transforms.NormalizeMinMax(@"Features", @"Features"))      
-                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator:mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(l1Regularization:0.170859100144544F,l2Regularization:0.427633330029212F,labelColumnName:@"Survived",featureColumnName:@"Features"), labelColumnName: @"Survived"))      
+                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator:mlContext.BinaryClassification.Trainers.FastTree(new FastTreeBinaryTrainer.Options(){NumberOfLeaves=7,MinimumExampleCountPerLeaf=8,NumberOfTrees=4,MaximumBinCountPerFeature=80,LearningRate=1F,FeatureFraction=1F,LabelColumnName=@"Survived",FeatureColumnName=@"Features"}), labelColumnName: @"Survived"))      
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue(@"PredictedLabel", @"PredictedLabel"));
 
             return pipeline;
