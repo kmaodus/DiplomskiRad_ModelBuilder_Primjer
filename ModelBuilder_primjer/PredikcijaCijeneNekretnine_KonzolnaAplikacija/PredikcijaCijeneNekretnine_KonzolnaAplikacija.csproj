@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="1.6.0" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="1.6.0" />
+  </ItemGroup>
+  <ItemGroup Label="PredikcijaCijeneNekretnine">
+    <None Include="PredikcijaCijeneNekretnine.consumption.cs">
+      <DependentUpon>PredikcijaCijeneNekretnine.mbconfig</DependentUpon>
+    </None>
+    <None Include="PredikcijaCijeneNekretnine.training.cs">
+      <DependentUpon>PredikcijaCijeneNekretnine.mbconfig</DependentUpon>
+    </None>
+    <None Include="PredikcijaCijeneNekretnine.zip">
+      <DependentUpon>PredikcijaCijeneNekretnine.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

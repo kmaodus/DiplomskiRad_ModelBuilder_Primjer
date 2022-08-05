@@ -25,7 +25,7 @@ namespace PredikcijaKvaraStroja_KonzolnaAplikacija
             var predictionResult = PredikcijaKvaraStroja.Predict(sampleData);
 
             Console.WriteLine("Using model to make single prediction -- Comparing actual Machine_failure with predicted Machine_failure from sample data...\n\n");
-
+            
 
             Console.WriteLine($"Product_ID: {@"L48179"}");
             Console.WriteLine($"Type: {@"M"}");
@@ -36,7 +36,7 @@ namespace PredikcijaKvaraStroja_KonzolnaAplikacija
             Console.WriteLine($"Tool_wear: {186F}");
 
 
-            Console.WriteLine($"\n\nPredicted Machine_failure: {predictionResult.Prediction}\n\n");
+            Console.WriteLine($"\n\nPredicted Machine_failure: {predictionResult.Prediction}\n\n Score: {predictionResult.Score}");
             Console.WriteLine("=============== End of process, hit any key to finish ===============");
             Console.ReadKey();
         }
